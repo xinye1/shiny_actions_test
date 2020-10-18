@@ -5,14 +5,14 @@ name: deploy-shiny
 jobs:
   deploy-shiny:
     runs-on: windows-latest
+    env:
+      SHINYAPPS_NAME: ${{secrets.SHINYAPPS_NAME}}
+      SHINYAPPS_TOKEN: ${{secrets.SHINYAPPS_TOKEN}}
+      SHINYAPPS_SECRET: ${{secrets.SHINYAPPS_SECRET}}
     steps:
       - uses: actions/checkout@v2
       - uses: r-lib/actions/setup-r@master
       - name: Set Envvars
-        env:
-          SHINYAPPS_NAME: ${{secrets.SHINYAPPS_NAME}}
-          SHINYAPPS_TOKEN: ${{secrets.SHINYAPPS_TOKEN}}
-          SHINYAPPS_SECRET: ${{secrets.SHINYAPPS_SECRET}}
       - name: Use Envvar
         run: cat $SHINYAPPS_NAME
       # - name: Install shiny
