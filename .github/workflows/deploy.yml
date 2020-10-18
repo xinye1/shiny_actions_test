@@ -12,7 +12,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: r-lib/actions/setup-r@master
-      - name: Set Envvars
       - name: Use Envvar
         run: cat $SHINYAPPS_NAME
       # - name: Install shiny
