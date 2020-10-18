@@ -1,16 +1,3 @@
-library(dplyr)
-library(tidyr)
-library(leaflet)
-library(shiny)
-# library(shiny.semantic)
-library(shinycssloaders)
-# library(DT)
-library(plotly)
-library(knitr)
-library(kableExtra)
-library(glue)
-library(purrrlyr)
-# #
 # This is a Shiny web application. You can run the application by clicking
 # the 'Run App' button above.
 #

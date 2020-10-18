@@ -10,9 +10,16 @@ jobs:
       - uses: r-lib/actions/setup-r@master
       - name: Install shiny
         run: |
-          install.packages(c('dplyr', 'tidyr', 'leaflet', 'shinycssloaders', 'DT', 'plotly', 'knitr', 'kableExtra', 'glue', 'purrrlyr', "shiny", "rsconnect"))
+          install.packages(c("shiny", "rsconnect"))
         shell: Rscript {0}
-      - name: Push to shiny.io
+      - name: Push to shinyapps.io
+        env:
+          SHINYAPPS_NAME: ${{secrets.SHINYAPPS_NAME}}
+          SHINYAPPS_TOKEN: ${{secrets.SHINYAPPS_TOKEN}}
+          SHINYAPPS_SECRET: ${{secrets.SHINYAPPS_SECRET}}
         run: |
-          Rscript -e "rsconnect::setAccountInfo(name=${{secrets.SHINYAPPS_NAME}}, token=${{secrets.SHINYAPPS_TOKEN}}, secret=${{secrets.SHINYAPPS_SECRET}})"
+          Rscript -e "rsconnect::setAccountInfo(
+            name = Sys.getenv('SHINYAPPS_NAME'),
+            token = Sys.getenv('SHINYAPPS_TOKEN'),
+            secret = Sys.getenv('SHINYAPPS_SECRET'))"
           Rscript -e "rsconnect::deployApp(appName = 'shiny_action_test')" 
