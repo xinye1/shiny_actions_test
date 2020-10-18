@@ -10,7 +10,7 @@ jobs:
       - uses: r-lib/actions/setup-r@master
       - name: Install shiny
         run: |
-          install.packages(c("shiny", "rsconnect"))
+          install.packages(c('dplyr', 'tidyr', 'leaflet', 'shinycssloaders', 'DT', 'plotly', 'knitr', 'kableExtra', 'glue', 'purrrlyr', "shiny", "rsconnect"))
         shell: Rscript {0}
       - name: Push to shiny.io
         run: |
