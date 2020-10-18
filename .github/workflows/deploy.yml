@@ -8,18 +8,21 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: r-lib/actions/setup-r@master
-        with:
+      - name: Set Envvars
+        env:
           SHINYAPPS_NAME: ${{secrets.SHINYAPPS_NAME}}
           SHINYAPPS_TOKEN: ${{secrets.SHINYAPPS_TOKEN}}
           SHINYAPPS_SECRET: ${{secrets.SHINYAPPS_SECRET}}
-      - name: Install shiny
-        run: |
-          install.packages(c("shiny", "rsconnect"))
-        shell: Rscript {0}
-      - name: Push to shinyapps.io
-        run: |
-          Rscript -e "rsconnect::setAccountInfo(
-            name = $SHINYAPPS_NAME,
-            token = $SHINYAPPS_TOKEN,
-            secret = $SHINYAPPS_SECRET)"
-          Rscript -e "rsconnect::deployApp(appName = 'shiny_action_test')" 
+      - name: Use Envvar
+        run: cat $SHINYAPPS_NAME
+      # - name: Install shiny
+      #   run: |
+      #     install.packages(c("shiny", "rsconnect"))
+      #   shell: Rscript {0}
+      # - name: Push to shinyapps.io
+      #   run: |
+      #     Rscript -e "rsconnect::setAccountInfo(
+      #       name = $SHINYAPPS_NAME,
+      #       token = $SHINYAPPS_TOKEN,
+      #       secret = $SHINYAPPS_SECRET)"
+      #     Rscript -e "rsconnect::deployApp(appName = 'shiny_action_test')" 
