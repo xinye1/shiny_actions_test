@@ -8,14 +8,18 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: r-lib/actions/setup-r@master
-      # - name: Install shiny
-      #   run: |
-      #     install.packages(c("shiny", "rsconnect"), type = "binary")
-      #   shell: Rscript {0}
+      - name: Install shiny
+        run: |
+          install.packages(c("shiny", "rsconnect"), type = "binary")
+        shell: Rscript {0}
       - name: shinyapps credentials
         env:
-          rsconnect_secret: ${{ secrets.SHINYAPPS_SECRET }}
-        # run: Rscript -e 'rsconnect::setAccountInfo(name="myusername", token="tokengoeshere", secret="$rsconnect_secret")'
-        # run: Rscript -e 'Sys.getenv(rsconnnect_secret)'
-        run: Sys.getenv('rsconnect_secret')
+          shiny_name: ${{ secrets.SHINYAPPS_NAME }}
+          shiny_token: ${{ secrets.SHINYAPPS_TOKEN }}
+          shiny_secret: ${{ secrets.SHINYAPPS_SECRET }}
+        run: |
+          rsconnect::setAccountInfo(
+            name = Sys.getenv('shiny_name'),
+            token = Sys.getenv('shiny_token'),
+            secret = Sys.getenv('shiny_secret'))
         shell: Rscript {0}
