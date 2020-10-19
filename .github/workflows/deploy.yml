@@ -16,5 +16,5 @@ jobs:
         env:
           rsconnect_secret: ${{ secrets.SHINYAPPS_SECRET }}
         # run: Rscript -e 'rsconnect::setAccountInfo(name="myusername", token="tokengoeshere", secret="$rsconnect_secret")'
-        run: Rscript -e '%rsconnnect_secret%'
+        run: Rscript -e '$Env:rsconnnect_secret'
         shell: Rscript {0}
