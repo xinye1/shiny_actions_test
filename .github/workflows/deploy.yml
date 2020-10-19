@@ -13,7 +13,8 @@ jobs:
           SHINYAPPS_NAME: ${{secrets.SHINYAPPS_NAME}}
           SHINYAPPS_TOKEN: ${{secrets.SHINYAPPS_TOKEN}}
           SHINYAPPS_SECRET: ${{secrets.SHINYAPPS_SECRET}}
-        run: cat $SHINYAPPS_NAME
+        run: Rscript -e "cat $SHINYAPPS_NAME""
+        shell: Rscript {0}
       # - name: Install shiny
       #   run: |
       #     install.packages(c("shiny", "rsconnect"))
