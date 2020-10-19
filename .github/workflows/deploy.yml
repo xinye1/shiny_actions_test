@@ -4,7 +4,7 @@ name: deploy-shiny
 
 jobs:
   deploy-shiny:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     steps:
       - uses: actions/checkout@v2
       - uses: r-lib/actions/setup-r@master
@@ -13,7 +13,7 @@ jobs:
           SHINYAPPS_NAME: ${{secrets.SHINYAPPS_NAME}}
           # SHINYAPPS_TOKEN: ${{secrets.SHINYAPPS_TOKEN}}
           # SHINYAPPS_SECRET: ${{secrets.SHINYAPPS_SECRET}}
-        run: Rscript -e "cat $SHINYAPPS_NAME""
+        run: Rscript -e "%SHINYAPPS_NAME%"
         shell: Rscript {0}
       # - name: Install shiny
       #   run: |
