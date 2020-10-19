@@ -11,8 +11,8 @@ jobs:
       - name: show vars
         with:
           SHINYAPPS_NAME: ${{secrets.SHINYAPPS_NAME}}
-          SHINYAPPS_TOKEN: ${{secrets.SHINYAPPS_TOKEN}}
-          SHINYAPPS_SECRET: ${{secrets.SHINYAPPS_SECRET}}
+          # SHINYAPPS_TOKEN: ${{secrets.SHINYAPPS_TOKEN}}
+          # SHINYAPPS_SECRET: ${{secrets.SHINYAPPS_SECRET}}
         run: Rscript -e "cat $SHINYAPPS_NAME""
         shell: Rscript {0}
       # - name: Install shiny
